@@ -1,5 +1,5 @@
-import { EspecieList } from "@/src/components/EspecieList";
-import { HomeFilter } from "@/src/components/HomeFilter";
+import { EspecieList } from "@/src/components/EspecieList"; //No existe el archivo
+import { HomeFilter } from "@/src/components/HomeFilter"; //No existe el archivo
 import { TextNunitoSans } from "@/src/components/TextNunitoSans";
 import { useFilteredEspecies } from "@/src/services/especies.hooks";
 import { TReino, TReinoEnum } from "@/src/services/especies.service";
@@ -47,10 +47,10 @@ export default function HomeScreen() {
     <SafeAreaView style={themeStyles.screen}>
       <View style={styles.container}>
         <View style={styles.titleContainer}>
-          <TextNunitoSans style={styles.title}>Home</TextNunitoSans>
+          <TextNunitoSans style={styles.title}>Hola Usuario</TextNunitoSans>
           <View style={styles.filtersContainer}>
             <Pressable onPress={handleRemoveFilter}>
-              <HomeFilter filter={filter} name={null} />
+              <HomeFilter filter={filter?? "TODOS"} name={"TODOS"} />
             </Pressable>
             <Pressable onPress={handleFilter(TReinoEnum.ANIMALIA)}>
               <HomeFilter filter={filter} name={TReinoEnum.ANIMALIA} />
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
+    margin: 10,
     fontSize: 20,
     fontWeight: "bold",
     color: themeColors.textBase,
