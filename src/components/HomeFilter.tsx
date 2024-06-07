@@ -5,8 +5,8 @@ import { themeColors } from '../theme/theme';
 import { TextNunitoSans } from './TextNunitoSans';
 
 export const HomeFilter = ({ filter, name }: any) => {
-  console.log(filter); //Es el nombre seleccionado
-  console.log(name);  //Vienen todos los nombres
+  // console.log(filter); //Es el nombre seleccionado
+  // console.log(name);  //Vienen todos los nombres
   return (
     <TextNunitoSans
       style={[styles.title, filter === name && styles.select]}
