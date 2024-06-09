@@ -2,16 +2,13 @@ import { themeStyles } from "@/src/theme/theme";
 import { useRef, useState } from "react";
 import { Button, Platform, StyleSheet, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-// import { DateTimeModalInput } from "@/src/components/DateTimeModalInput";
+import { DateTimeModalInput } from "@/src/components/DateTimeModalInput";
 import { Foundation } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { launchImageLibraryAsync, MediaTypeOptions } from "expo-image-picker";
 import { CameraView, useCameraPermissions, CameraViewRef } from "expo-camera";
 
 export default function ReportScreen() {
-  console.log("usted esta en report")
-  // const searchParams = useLocalSearchParams();
-
   const [latitud, setLatitud] = useState("");
   const [longitud, setLongitud] = useState("");
   const [fecha, setFecha] = useState<Date>(new Date());

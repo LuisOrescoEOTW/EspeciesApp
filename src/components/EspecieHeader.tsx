@@ -32,21 +32,21 @@ export function EspecieHeader({ especie }: { especie: TEspecie }) {
             </View>
           </View>
           <LinearGradient
-            start={{ x: 0.7, y: 1 }}
-            end={{ x: 0.7, y: 0 }}
+            start={{ x: 0.6, y: 1 }}
+            end={{ x: 0.6, y: 0 }}
             colors={[
               "rgba(48, 49, 45, 1)",
-              "rgba(48, 49, 45, 0.9)",
+              "rgba(48, 49, 45, 0.8)",
               "rgba(30, 31, 24, 0)",
-            ]}
-            locations={[0, 0.34, 0]}
-            style={{
-              height: 300,
-              justifyContent: "flex-end",
-              paddingBottom: 40,
-              paddingHorizontal: 10,
-            }}
-          >
+              ]}
+              locations={[0, 0.35, 0]}
+              style={{
+                height: 300,
+                justifyContent: "flex-end",
+                paddingBottom: 40,
+                paddingHorizontal: 10,
+                }}
+                >
             <View>
               <TextNunitoSans style={styles.text}>{especie.nombre_cientifico}</TextNunitoSans>
             </View>
@@ -59,7 +59,7 @@ export function EspecieHeader({ especie }: { especie: TEspecie }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.6,
   },
   card: {
     height: height * 0.45,
@@ -80,12 +80,13 @@ const styles = StyleSheet.create({
   icon: {
     flexDirection: 'row',
     marginHorizontal: 20,
-    marginBottom: 60,
+    marginBottom: 10,
   },
   iconUno: {
-    flex: 0.07,
+    flex: 0.08,
     backgroundColor: '#FFF',
-    borderRadius: 20,
+    borderRadius: 30,
+    // alignItems: "center"
   },
   iconDos: {
     flex: 0.63,
