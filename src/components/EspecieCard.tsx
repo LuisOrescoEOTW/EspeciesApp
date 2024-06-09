@@ -12,6 +12,7 @@ type EspecieCardProps = {
 //scrsry
 //bysor: app instalr tambien en el celu.
 
+
 export const EspecieCard: FC<EspecieCardProps> = ({ especie }) => {
     const { navigate } = useRouter();
     const handlePress = () => {
@@ -25,12 +26,12 @@ export const EspecieCard: FC<EspecieCardProps> = ({ especie }) => {
     return (
         <Pressable onPress={handlePress} style={styles.card}>
             {/* <View> */}
-                {especie.imagen ? (
-                    <Image source={{ uri: especie.imagen }} style={styles.image} />
-                ) : (
-                    <Image source={require('@/assets/images/placeholder.png')} style={styles.image} />
-                )}
-                <TextNunitoSans style={styles.title} numberOfLines={1} ellipsizeMode="tail" >{especie.nombre_cientifico}</TextNunitoSans>
+            {especie.imagen ? (
+                <Image source={{ uri: especie.imagen }} style={styles.image} />
+            ) : (
+                <Image source={require('@/assets/images/placeholder.png')} style={styles.image} />
+            )}
+            <TextNunitoSans style={styles.title} numberOfLines={1} ellipsizeMode="tail" >{especie.nombre_cientifico}</TextNunitoSans>
             {/* </View> */}
         </Pressable>
     );

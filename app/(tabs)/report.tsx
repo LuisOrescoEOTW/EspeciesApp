@@ -9,6 +9,9 @@ import { launchImageLibraryAsync, MediaTypeOptions } from "expo-image-picker";
 import { CameraView, useCameraPermissions, CameraViewRef } from "expo-camera";
 
 export default function ReportScreen() {
+  console.log("usted esta en report")
+  // const searchParams = useLocalSearchParams();
+
   const [latitud, setLatitud] = useState("");
   const [longitud, setLongitud] = useState("");
   const [fecha, setFecha] = useState<Date>(new Date());

@@ -8,7 +8,7 @@ import { Link } from 'expo-router';
 const { height } = Dimensions.get('window');
 
 export function EspecieDetail({ especie }: { especie: TEspecie }) {
-  console.log(especie);
+  // console.log(especie);
   return (
     <View style={styles.container}>
       <View style={styles.card}>

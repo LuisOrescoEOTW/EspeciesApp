@@ -1,5 +1,5 @@
-import { EspecieDetail } from "@/src/components/EspecieDetail"; //No existe el archivo
-import { EspecieHeader } from "@/src/components/EspecieHeader"; //No existe el archivo
+import { EspecieDetail } from "@/src/components/EspecieDetail";
+import { EspecieHeader } from "@/src/components/EspecieHeader";
 import { TextNunitoSans } from "@/src/components/TextNunitoSans";
 import { useEspecie } from "@/src/services/especies.hooks";
 import { themeColors, themeStyles } from "@/src/theme/theme";
@@ -12,6 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default function EspecieShowScreen() {
   const searchParams = useLocalSearchParams();
+  //searchParams -> Recibe especieId: "14218"
 
   const spId =
     typeof searchParams.especieId === "string"
@@ -49,7 +50,7 @@ export default function EspecieShowScreen() {
       <EspecieHeader especie={especie} />
       <EspecieDetail especie={especie} />
       <View style={styles.general}>
-        <Link style={styles.boton} href={{ pathname: "/app/(tabs)/report.tsx", params: { reportSpId: especie.sp_id } }}>Reportar Avistaje</Link>
+        <Link style={styles.boton} href={{ pathname: "/app/tabs/report.tsx", params: { reportSpId: especie.sp_id } }}>Reportar Avistaje</Link>
       </View>
     </View>
   );

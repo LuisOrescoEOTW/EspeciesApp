@@ -1,12 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground, Dimensions } from 'react-native';
+import { View, StyleSheet, ImageBackground, Dimensions, Pressable } from 'react-native';
 import { TextNunitoSans } from './TextNunitoSans';
 import { TEspecie } from '../services/especies.service';
-import { themeColors } from '../theme/theme';
+import { LinearGradient } from 'expo-linear-gradient';
+import { AntDesign } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
 const { height } = Dimensions.get('window');
 
 export function EspecieHeader({ especie }: { especie: TEspecie }) {
+  const { back } = useRouter();
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -15,9 +19,38 @@ export function EspecieHeader({ especie }: { especie: TEspecie }) {
           style={styles.image}
           imageStyle={{ borderRadius: 20 }} // Aplica el borde redondeado a la imagen
         >
-          <View style={styles.textContainer}>
-            <TextNunitoSans style={styles.text}>{especie.nombre_cientifico}</TextNunitoSans>
+          <View style={styles.icon}>
+            <View style={styles.iconUno}>
+              <Pressable onPress={back}>
+                <AntDesign name="left" size={24} color="black" />
+              </Pressable>
+            </View>
+            <View style={styles.iconDos} />
+            <View style={styles.iconTres}>
+              <AntDesign name="heart" size={20} color="red" />
+              <TextNunitoSans style={styles.likesText}>0 likes</TextNunitoSans>
+            </View>
           </View>
+          <LinearGradient
+            start={{ x: 0.7, y: 1 }}
+            end={{ x: 0.7, y: 0 }}
+            colors={[
+              "rgba(48, 49, 45, 1)",
+              "rgba(48, 49, 45, 0.9)",
+              "rgba(30, 31, 24, 0)",
+            ]}
+            locations={[0, 0.34, 0]}
+            style={{
+              height: 300,
+              justifyContent: "flex-end",
+              paddingBottom: 40,
+              paddingHorizontal: 10,
+            }}
+          >
+            <View>
+              <TextNunitoSans style={styles.text}>{especie.nombre_cientifico}</TextNunitoSans>
+            </View>
+          </LinearGradient>
         </ImageBackground>
       </View>
     </View>
@@ -44,9 +77,33 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  textContainer: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    padding: 30,
+  icon: {
+    flexDirection: 'row',
+    marginHorizontal: 20,
+    marginBottom: 60,
+  },
+  iconUno: {
+    flex: 0.07,
+    backgroundColor: '#FFF',
+    borderRadius: 20,
+  },
+  iconDos: {
+    flex: 0.63,
+  },
+  iconTres: {
+    flex: 0.3,
+    backgroundColor: '#FFF',
+    borderRadius: 20,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  likesText: {
+    marginLeft: 5,
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 20,
   },
   text: {
     color: 'white',
@@ -55,22 +112,3 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
 });
-
-{/* <LinearGradient
-          start={{ x: 0.5, y: 1 }}
-          end={{ x: 0.5, y: 0 }}
-          colors={[
-            // "rgba(48, 49, 45, 1)",
-            // "rgba(48, 49, 45, 0.9)",
-            // "rgba(30, 31, 24, 0)",
-          ]}
-          locations={[0, 0.34, 0.68]}
-          style={{
-            height: 300,
-            justifyContent: "flex-end",
-            paddingBottom: 40,
-            paddingHorizontal: 10,
-          }}
-        > */}
-{/* </LinearGradient> */ }
-{/* </ImageBackground> */ }

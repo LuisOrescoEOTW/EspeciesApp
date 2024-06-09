@@ -1,8 +1,9 @@
-import { TextProps, Text as RNText } from "react-native";
+import React from 'react';
+import { TextProps, Text as RNText, TextStyle } from "react-native";
 import { themeStyles } from "@/src/theme/theme";
 import { useFonts } from "expo-font";
 
-const regularMap = {
+const regularMap: { [key: string]: string } = {
   100: "NunitoSans_10pt_ExtraLight",
   200: "NunitoSans_10pt_ExtraLight",
   300: "NunitoSans_10pt_Light",
@@ -36,7 +37,8 @@ export const TextNunitoSans = ({ style, ...props }: TextProps): JSX.Element => {
     );
   }
 
-  const fontFamily = regularMap[style?.fontWeight ?? 400];
+  const fontWeight = ((style as TextStyle)?.fontWeight ?? "400").toString();
+  const fontFamily = regularMap[fontWeight] || "NunitoSans_10pt_Regular";
 
   return (
     <RNText
