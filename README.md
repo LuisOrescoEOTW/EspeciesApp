@@ -2,6 +2,8 @@
 
 App a desarrollar durante la cursada 2024 de la cátedra de Taller de Nuevas tecnologías de la UNTDF
 
+## Luis Orescovich
+
 ## Puesta en marcha
 
 1. Clonar el repo
