@@ -2,9 +2,10 @@ import { EspecieDetail } from "@/src/components/EspecieDetail";
 import { EspecieHeader } from "@/src/components/EspecieHeader";
 import { TextNunitoSans } from "@/src/components/TextNunitoSans";
 import { useEspecie } from "@/src/services/especies.hooks";
-import { themeColors, themeStyles } from "@/src/theme/theme";
+import { themeStyles } from "@/src/theme/theme";
 import { useLocalSearchParams } from "expo-router";
-import { Pressable, StyleSheet, View, ViewBase, useWindowDimensions } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function EspecieShowScreen() {
   const searchParams = useLocalSearchParams();
@@ -39,13 +40,13 @@ export default function EspecieShowScreen() {
         <TextNunitoSans>La especie no existe</TextNunitoSans>
       </View>
     );
-  }    
+  }
 
   return (
-    <View style={themeStyles.screen}>
+    <SafeAreaView style={themeStyles.screen}>
       <EspecieHeader especie={especie} />
       <EspecieDetail especie={especie} />
-    </View>
+    </SafeAreaView>
   );
 }
 

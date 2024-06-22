@@ -8,10 +8,11 @@ import { useState } from "react";
 import {
   Button,
   Pressable,
-  SafeAreaView,
   StyleSheet,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 
 export default function HomeScreen() {
   const [filter, setFilter] = useState<TReino | null>(null);
@@ -47,10 +48,10 @@ export default function HomeScreen() {
     <SafeAreaView style={themeStyles.screen}>
       <View style={styles.container}>
         <View style={styles.titleContainer}>
-          <TextNunitoSans style={styles.title}>Hola Usuario</TextNunitoSans>
+            <TextNunitoSans style={styles.title}>Hola Usuario</TextNunitoSans>
           <View style={styles.filtersContainer}>
             <Pressable onPress={handleRemoveFilter}>
-              <HomeFilter filter={filter?? "TODOS"} name={"TODOS"} />
+              <HomeFilter filter={filter ?? "TODOS"} name={"TODOS"} />
             </Pressable>
             <Pressable onPress={handleFilter(TReinoEnum.ANIMALIA)}>
               <HomeFilter filter={filter} name={TReinoEnum.ANIMALIA} />
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
   title: {
     margin: 10,
     fontSize: 20,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     color: themeColors.textBase,
   },
   titleContainer: { gap: 35 },

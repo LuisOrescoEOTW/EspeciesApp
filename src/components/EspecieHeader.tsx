@@ -11,6 +11,7 @@ const { height } = Dimensions.get('window');
 export function EspecieHeader({ especie }: { especie: TEspecie }) {
   const { back } = useRouter();
 
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
@@ -38,15 +39,16 @@ export function EspecieHeader({ especie }: { especie: TEspecie }) {
               "rgba(48, 49, 45, 1)",
               "rgba(48, 49, 45, 0.8)",
               "rgba(30, 31, 24, 0)",
-              ]}
-              locations={[0, 0.35, 0]}
-              style={{
-                height: 300,
-                justifyContent: "flex-end",
-                paddingBottom: 40,
-                paddingHorizontal: 10,
-                }}
-                >
+            ]}
+            // locations={[0, 0.35, 0.7]} 
+            locations={[0, 0.35, 0.7]}
+            style={{
+              height: 300,
+              justifyContent: "flex-end",
+              paddingBottom: 40,
+              paddingHorizontal: 10,
+            }}
+          >
             <View>
               <TextNunitoSans style={styles.text}>{especie.nombre_cientifico}</TextNunitoSans>
             </View>
@@ -86,7 +88,6 @@ const styles = StyleSheet.create({
     flex: 0.08,
     backgroundColor: '#FFF',
     borderRadius: 30,
-    // alignItems: "center"
   },
   iconDos: {
     flex: 0.63,

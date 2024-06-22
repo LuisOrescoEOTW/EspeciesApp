@@ -9,6 +9,15 @@ export async function getEspecies() {
   return response.data;
 }
 
+export async function sendEspecies() {
+  const response = await axios.post<TEspecie[]>(
+    // toma el valor de .env.local
+    // resulta en http://localhost:3000/especies
+    `${process.env.EXPO_PUBLIC_API_URL}/especies`
+  );
+  return response.data;
+}
+
 export interface TEspecie {
   sp_id: number;
   reino: TReino;
