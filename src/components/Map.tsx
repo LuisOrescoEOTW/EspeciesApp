@@ -1,22 +1,32 @@
+import React from 'react'
+
 import { ImageBackground } from "expo-image";
 import { StyleSheet, Pressable } from "react-native";
 import { themeColors } from "@/src/theme/theme";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Dispatch, FC, SetStateAction } from "react";
+import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from 'expo-location'; // Importar biblioteca de localización
+
 
 type MapProps = {
   setLatitud: Dispatch<SetStateAction<string>>;
   setLongitud: Dispatch<SetStateAction<string>>;
 };
+
 export const Map: FC<MapProps> = ({ setLatitud, setLongitud }) => {
 
   const handlePress = async () => {
-    // TODO: si el permiso fue rechazado, abrir configuracion
-
     // TODO: Si el permiso podemos pregunta, preguntamos
-
-    // TODO: Si tenmos acceso, nos quedamos con la posicion y seteamos latitud y longitud
+    let { status } = await requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      // TODO: si el permiso fue rechazado, abrir configuracion
+      console.log('Permiso de localización no concedido');
+      return;
     }
+    // TODO: Si tenmos acceso, nos quedamos con la posicion y seteamos latitud y longitud
+    let location = await getCurrentPositionAsync({});
+    setLatitud(location.coords.latitude.toString());
+    setLongitud(location.coords.longitude.toString());
   };
 
   return (
