@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { ImageBackground } from "expo-image";
-import { StyleSheet, Pressable } from "react-native";
+import { StyleSheet, Pressable, Alert, Linking } from "react-native";
 import { themeColors } from "@/src/theme/theme";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Dispatch, FC, SetStateAction } from "react";
@@ -20,7 +20,15 @@ export const Map: FC<MapProps> = ({ setLatitud, setLongitud }) => {
     let { status } = await requestForegroundPermissionsAsync();
     if (status !== 'granted') {
       // TODO: si el permiso fue rechazado, abrir configuracion
-      console.log('Permiso de localización no concedido');
+      // Si el permiso fue rechazado, abrir configuración del dispositivo
+      Alert.alert(
+        'Permiso de localización no concedido',
+        'Por favor, habilita los permisos de localización en la configuración del dispositivo.',
+        [
+          { text: 'Cancelar', style: 'cancel' },
+          { text: 'Abrir configuración', onPress: () => Linking.openSettings() },
+        ]
+      );
       return;
     }
     // TODO: Si tenmos acceso, nos quedamos con la posicion y seteamos latitud y longitud

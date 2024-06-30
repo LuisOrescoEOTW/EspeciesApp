@@ -18,13 +18,15 @@ import { CustomButton } from "@/src/components/CustomButton";
 import { CustomTextInput } from "@/src/components/CustomTextInput";
 import { Map } from "@/src/components/Map";
 import { TakePictureBtn } from "@/src/components/TakePictureBtn";
+import { launchImageLibraryAsync, MediaTypeOptions } from 'expo-image-picker';
+import { readAsStringAsync, EncodingType } from 'expo-file-system';
+import { TReporte, sendReporte } from "@/src/services/especies.service";
 
 export default function ReportScreen() {
   const params = useLocalSearchParams<{ reportSpId: string }>();
 
   const [prevSpId, setPrevSpId] = useState<string | null>(null);
   const [spId, setSpId] = useState<string | null>(params?.reportSpId ?? null);
-
   const [latitud, setLatitud] = useState("");
   const [longitud, setLongitud] = useState("");
   const [fecha, setFecha] = useState<Date>(new Date());
@@ -44,8 +46,19 @@ export default function ReportScreen() {
 
   const pickImage = async () => {
     // TODO: Obtengo la imagen de la galeria como base64
-
+    let result = await launchImageLibraryAsync({
+      mediaTypes: MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
     // TODO: seteo la imagen
+    if (!result.canceled) {
+      let base64Image = await readAsStringAsync(result.assets[0].uri, {
+        encoding: EncodingType.Base64,
+      });
+      setImagen(`data:image/jpeg;base64,${base64Image}`);
+    }
   };
 
   const enviarReporte = async () => {
@@ -74,8 +87,18 @@ export default function ReportScreen() {
     if (errorsArr.length > 0) {
       return;
     }
-
-
+    //Creo objeto para enviar
+    const avistaje:TReporte = {
+      sp_id: spId !== null ? parseInt(spId) : 0,
+      fecha: fecha,
+      hora: hora,
+      latitud: parseInt(latitud),
+      longitud: parseInt(longitud),
+      descripcion: descripcion,
+      imagen: imagen,
+    }
+    //Envío el avistaje
+    sendReporte(avistaje)
     // reseteo formulario
     setSpId(null);
     setLatitud("");
@@ -177,9 +200,8 @@ export default function ReportScreen() {
             />
           </View>
         </View>
-
         <Pressable onPress={enviarReporte}>
-          <CustomButton label="Reportar avistje" />
+          <CustomButton label="Reportar avistaje" />
         </Pressable>
       </ScrollView>
     </SafeAreaView>
