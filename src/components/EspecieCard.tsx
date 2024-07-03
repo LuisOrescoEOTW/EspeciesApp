@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { EspecieHome } from '../adapters/homeAdapters';
-import { View, StyleSheet, Image, Pressable } from 'react-native';
+import { StyleSheet, Image, Pressable } from 'react-native';
 import { TextNunitoSans } from "@/src/components/TextNunitoSans";
 import { themeColors } from '../theme/theme';
 import { useRouter } from 'expo-router';
@@ -8,10 +8,6 @@ import { useRouter } from 'expo-router';
 type EspecieCardProps = {
     especie: EspecieHome;
 };
-
-//scrsry
-//bysor: app instalr tambien en el celu.
-
 
 export const EspecieCard: FC<EspecieCardProps> = ({ especie }) => {
     const { navigate } = useRouter();
@@ -25,14 +21,12 @@ export const EspecieCard: FC<EspecieCardProps> = ({ especie }) => {
     };
     return (
         <Pressable onPress={handlePress} style={styles.card}>
-            {/* <View> */}
             {especie.imagen ? (
                 <Image source={{ uri: especie.imagen }} style={styles.image} />
             ) : (
                 <Image source={require('@/assets/images/placeholder.png')} style={styles.image} />
             )}
             <TextNunitoSans style={styles.title} numberOfLines={1} ellipsizeMode="tail" >{especie.nombre_cientifico}</TextNunitoSans>
-            {/* </View> */}
         </Pressable>
     );
 }

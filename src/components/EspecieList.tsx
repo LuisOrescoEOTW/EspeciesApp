@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 import { EspecieHome } from '../adapters/homeAdapters';
-import { View, Text, Image, StyleSheet, FlatList } from 'react-native';
-import { TextNunitoSans } from "@/src/components/TextNunitoSans";
-import { themeColors } from '../theme/theme';
+import { StyleSheet, FlatList } from 'react-native';
 import { EspecieCard } from './EspecieCard';
 
 type EspeciesListProps = {

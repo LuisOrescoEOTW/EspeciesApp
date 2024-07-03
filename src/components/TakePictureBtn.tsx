@@ -46,7 +46,7 @@ export const TakePictureBtn: FC<TakePictureBtnProps> = ({ setImagen }) => {
       }
     }
   };
-
+  
   const onTakePicture = async () => {
     const photo = await cameraRef.current?.takePictureAsync({ base64: true });
     setImagen(photo.base64 ? `data:image/jpeg;base64,${photo.base64}` : null);

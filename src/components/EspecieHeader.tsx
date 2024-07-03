@@ -18,7 +18,7 @@ export function EspecieHeader({ especie }: { especie: TEspecie }) {
         <ImageBackground
           source={especie.imagen ? { uri: especie.imagen } : require('@/assets/images/placeholder.png')}
           style={styles.image}
-          imageStyle={{ borderRadius: 20 }} // Aplica el borde redondeado a la imagen
+          imageStyle={{ borderRadius: 20 }}
         >
           <View style={styles.icon}>
             <View style={styles.iconUno}>

@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground, Dimensions, Pressable } from 'react-native';
+import { View, StyleSheet, Dimensions, Pressable } from 'react-native';
 import { TextNunitoSans } from './TextNunitoSans';
 import { TEspecie } from '../services/especies.service';
-import { themeColors } from '../theme/theme';
-import { Link, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 
 const { height } = Dimensions.get('window');
 
