@@ -84,13 +84,14 @@ export default function ReportScreen() {
     if (errorsArr.length > 0) {
       return;
     }
+    
     //Creo objeto para enviar
     const avistaje:TReporte = {
       sp_id: spId !== null ? parseInt(spId) : 0,
       fecha: fecha,
       hora: hora,
-      latitud: parseInt(latitud),
-      longitud: parseInt(longitud),
+      latitud: parseFloat(latitud),
+      longitud: parseFloat(longitud),
       descripcion: descripcion,
       imagen: imagen,
     }
