@@ -14,3 +14,7 @@ App a desarrollar durante la cursada 2024 de la cátedra de Taller de Nuevas tec
 ## ¿Donde empezamos?
 
 La app "inicia su ejecución" en el archivos `app/_layout.tsx`. Seguir allí
+
+# Ejecutar: npm run start
+
+# Puerto 8081

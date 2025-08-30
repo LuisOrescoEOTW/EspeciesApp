@@ -202,7 +202,7 @@ export default function ReportScreen() {
       </View>
 
       <Pressable onPress={enviarReporte}>
-        <CustomButton label="Reportar avistje" />
+        <CustomButton label="Reportar Avistaje" />
       </Pressable>
     </ScrollView>
   );
