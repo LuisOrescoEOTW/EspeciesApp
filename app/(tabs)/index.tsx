@@ -5,16 +5,13 @@ import { useFilteredEspecies } from "@/src/services/especies.hooks";
 import { TReino, TReinoEnum } from "@/src/services/especies.service";
 import { themeColors, themeStyles } from "@/src/theme/theme";
 import { useState } from "react";
-import {
-  Button,
-  Pressable,
-  StyleSheet,
-  View,
-} from "react-native";
+import { Button, Pressable, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import { useAuth } from "@/src/context/authContext";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export default function HomeScreen() {
+  const { user, logout } = useAuth();
   const [filter, setFilter] = useState<TReino | null>(null);
 
   const {
@@ -48,7 +45,21 @@ export default function HomeScreen() {
     <SafeAreaView style={themeStyles.screen}>
       <View style={styles.container}>
         <View style={styles.titleContainer}>
-            <TextNunitoSans style={styles.title}>Hola Usuario</TextNunitoSans>
+          <View style={styles.userRow}>
+            <TextNunitoSans style={styles.title}>
+              {user ? `Hola ${user.email}` : "Hola Anónimo"}
+            </TextNunitoSans>
+            {user && (
+              <Pressable onPress={logout} style={styles.logoutBtn}>
+                <MaterialIcons
+                  name="logout"
+                  size={22}
+                  color={themeColors.textBase}
+                />
+              </Pressable>
+            )}
+          </View>
+
           <View style={styles.filtersContainer}>
             <Pressable onPress={handleRemoveFilter}>
               <HomeFilter filter={filter ?? "TODOS"} name={"TODOS"} />
@@ -100,5 +111,12 @@ const styles = StyleSheet.create({
   titleContainer: { gap: 35 },
   textError: {
     color: "red",
+  },
+  userRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  logoutBtn: {
+    marginLeft: 8,
   },
 });

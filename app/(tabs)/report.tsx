@@ -1,11 +1,12 @@
 import { themeStyles } from "@/src/theme/theme";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Platform,
   Pressable,
   ScrollView,
   StyleSheet,
   View,
+  Text, Button
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { DateTimeModalInput } from "@/src/components/DateTimeModalInput";
@@ -20,6 +21,8 @@ import { Map } from "@/src/components/Map";
 import { TakePictureBtn } from "@/src/components/TakePictureBtn";
 import { launchImageLibraryAsync, MediaTypeOptions } from 'expo-image-picker';
 import { TReporte, sendReporte } from "@/src/services/especies.service";
+import { useRouter } from "expo-router";
+import { useAuth } from "../../src/context/authContext";
 
 export default function ReportScreen() {
   const params = useLocalSearchParams<{ reportSpId: string }>();
@@ -32,8 +35,20 @@ export default function ReportScreen() {
   const [hora, setHora] = useState<Date>(new Date());
   const [descripcion, setDescripcion] = useState("");
   const [imagen, setImagen] = useState<string | null>(null);
-
   const [errors, setErrors] = useState<string[]>([]);
+
+  const { user, loading } = useAuth();
+  const router = useRouter();
+ 
+  if (loading) {
+    return <Text>Cargando...</Text>;
+  }
+  
+  useEffect(() => {
+    if (!user) {
+      router.replace("/login");
+    }
+  }, [user]);
 
   if (params?.reportSpId && prevSpId !== params.reportSpId) {
     setPrevSpId(params.reportSpId);
